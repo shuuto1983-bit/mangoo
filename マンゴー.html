@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-content-Type-Options" content="nosniff">
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #ffffff;
+      font-family: sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .page-screen {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+
+    #page2 {
+      display: none;
+    }
+
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #1e293b;
+      margin-top: 15px;
+      max-width: 800px;
+      padding: 100px 100px
+    }
+
+    td {
+      border: 15px solid #243459;
+      padding: 15px;
+      text-align: center;
+      width: 33.3%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    input[type="number"] {
+      background-color: #334155;
+      color: #ffffff;
+      border: 1px solid #475569;
+      padding: 6px 10px;
+      font-size: 1rem;
+      border-radius: 4px;
+      width: 70px;
+    }
+
+
+    .btn {
+      background-color: #1d4ed8;
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .btn-secondary {
+      background-color: #475569;
+
+    }
+
+    #page2 {
+      display: none;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    #page2 td {
+      padding: 5px 5px;
+
+    }
+
+    #page2 h1,
+    #page2 h2,
+    #page2 h3,
+    #page2 h4 {
+      font-size: 0.8rem;
+
+    }
+
+    .result-cell {
+      background-color: #0a382b;
+      color: #f3f6f5;
+      font-weight: bold;
+      width: 70%;
+      padding: 15px 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== 1ページ目（画面1） ==================== -->
+  <div id="page1" class="page-screen">
+
+    <h2>利益計算</h2>
+
+    購入金額： <input type="number" id="a" value="1000" oninput="calc1()">
+    入金額： <input type="number" id="b" value="1500" oninput="calc1()">
+
+    <br><br>
+
+    <table>
+
+      <tr>
+        <td style="background-color: #a2c1e3;">
+          <h1>利益率(%)</h1>
+        </td>
+        <td style="background-color: #a2c1e3;">
+          <h2>20％の利益を確保する最大額(円)</h2>
+        </td>
+        <td style="background-color: #a2c1e3;">
+          <h3>必要ポイント</h3>
+        </td>
+
+      </tr>
+
+      <tr>
+        <td>
+          <h1 id="profit" value="50">50</h1>
+        </td>
+        <td>
+          <h2 id="price" value="1200">1200</h2>
+
+        </td>
+        <td>
+          <h3 id="point" value="200">200</h3>
+        </td>
+      </tr>
+
+
+    </table>
+
+    <h2>容積重量</h2>
+
+    L(cm):<input type="number" id="l" value="20" oninput="calc2()">
+    W(cm):<input type="number" id="w" value="20" oninput="calc2()">
+    H(cm):<input type="number" id="h" value="25" oninput="calc2()">
+
+    <br><br>
+
+    <table>
+      <tr>
+        <td style="background-color: #a2c1e3;">
+          <h1>容積重量</h1>
+        </td>
+        <td style="background-color: #a2c1e3;">
+          <h2>容積重量(+3cm)</h2>
+        </td>
+
+
+      </tr>
+
+      <tr>
+        <td>
+          <h1 id="VW" value="2.0">2.0</h1>
+        </td>
+        <td>
+          <h2 id="VW3" value="3.0">3.0</h2>
+        </td>
+
+      </tr>
+
+
+    </table>
+
+    <body>
+      <h2>送料計算</h2>
+
+      容積重量から算出した送料： <input type="number" id="c" value="50000" oninput="calc3()">
+      商品代金： <input type="number" id="d" value="100000" oninput="calc3()">
+
+      <br><br>
+
+      <table>
+        <tr>
+          <td style="background-color: #a2c1e3;">
+            <h1>容積重量から算出した送料(円)</h1>
+          </td>
+          <td style="background-color: #a2c1e3;">
+            <h2>商品代金(円)</h2>
+          </td>
+          <td style="background-color: #a2c1e3;">
+            <h3>物流保険・手数料込みの送料(円)</h3>
+          </td>
+
+        </tr>
+
+        <tr>
+          <td>
+            <h1 id="c" value="50000">50000</h1>
+          </td>
+          <td>
+            <h2 id="d" value="100000">10000</h2>
+          <td>
+            <h3 id="e" value="100000">10000</h3>
+
+
+        </tr>
+
+
+      </table>
+
+      <button class="btn" onclick="nextPage()">次へ</button>
+
+  </div>
+
+
+
+
+  <!-- ==================== 2ページ目 ==================== -->
+  <div id="page2" class="page-screen">
+    <style>
+      body {
+        background-color: #0f172a;
+        color: #ffffff;
+        font-family: sans-serif;
+        padding: 20px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 1000px;
+        background-color: #1e293b;
+        margin-top: 15px;
+        table-layout: fixed;
+      }
+
+      th,
+      td {
+        border: 1px solid #334155;
+        padding: 12px;
+        text-align: center;
+        word-wrap: break-word;
+      }
+
+      th {
+        background-color: #0f172a;
+        color: #38bdf8;
+      }
+
+      /* 文字入力用のインプット領域 */
+      input[type="text"] {
+        background-color: #334155;
+        color: #ffffff;
+        border: 1px solid #475569;
+        padding: 8px;
+        font-size: 0.95rem;
+        border-radius: 4px;
+        width: 90%;
+        box-sizing: border-box;
+      }
+
+      /* 結果を表示する5列目の見せ方 */
+      .result-cell {
+        background-color: #064e3b;
+        /* 濃い緑 */
+        color: #a7f3d0;
+        /* 薄い緑文字 */
+        font-weight: bold;
+      }
+
+      .btn-secondary {
+        background-color: #185fc2;
+        /* 戻るボタン用のグレー */
+    </style>
+    </head>
+    }
+
+    <body>
+
+      <h2>納期が判明している商品の継続発注確認</h2>
+
+      <table>
+        <colgroup>
+          <col style="width: 15%;">
+          <col style="width: 15%;">
+          <col style="display: none;">
+          <col style="display: none;">
+          <col style="width: 30%;">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>納期</th>
+            <th>返信期限</th>
+            <th>完成文</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <!-- 1列目 (A) -->
+            <td>
+              <input type="text" id="col1" value="りんご" oninput="replaceText()">
+            </td>
+            <!-- 2列目 (B) -->
+            <td>
+              <input type="text" id="col2" value="100" oninput="replaceText()">
+            </td>
+            <!-- 3列目 (C) -->
+            <td type="text" id="col3" style="display: none;">
+            </td>
+
+            <td id="col4" style="display: none;">
+              Thank you for your order. We're sorry to inform you that this item is now
+              only available as preorder and scheduled to be released on XXX according
+              to the manufacturer. Would you be fine with waiting for the delivery or
+              cancel the item? Please reply to this massage by WWW. If we don't receive
+              your message by this date, we'll continue preorder of this item.
+            </td>
+            <!-- 5列目 (E: 結果を表示) -->
+            <td id="col5" class="result-cell">
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <h2>商品が複数あり、その中の一部の継続発注を確認する場合</h2>
+
+      <table>
+        <colgroup>
+          <col style="width: 15%;">
+          <col style="width: 15%;">
+          <col style="width: 15%;">
+          <col style="display: none;">
+          <col style="width: 30%;">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>追加額</th>
+            <th>入金期限</th>
+            <th>支払い番号</th>
+            <th>完成文</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <!-- 1列目 (A) -->
+            <td>
+              <input type="text" id="col6" value="10000" oninput="replaceText2()">
+            </td>
+            <!-- 2列目 (B) -->
+            <td>
+              <input type="text" id="col7" value="early January" oninput="replaceText2()">
+            </td>
+            <!-- 3列目 (C) -->
+            <td>
+              <input type="text" id="col8" value="●●●" oninput="replaceText2()">
+            </td>
+            <!-- 4列目 (D: 元のテキスト) -->
+            <td id="col9" style="display: none;">
+              "You need additional GGG yen for the NNN. Please make a payment by MMM October.
+              If we don't confirm your payment by this date,
+              we'll cancel this order.
+            </td>
+            <!-- 5列目 (E: 結果を表示) -->
+            <td id="col10" class="result-cell">
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <button class="btn btn-secondary" onclick="prevPage()">◀ 戻る（ページ1へ）</button>
+  </div>
+
+
+
+  <!-- ==================== JavaScript ==================== -->
+  <script>
+    function nextPage() {
+      document.getElementById("page1").style.display = "none";
+      document.getElementById("page2").style.display = "block";
+      window.scrollTo(0, 0);
+    }
+
+    function prevPage() {
+
+      document.getElementById("page2").style.display = "none";
+      document.getElementById("page1").style.display = "block";
+      window.scrollTo(0, 0);
+
+    }
+
+
+    function calc1() {
+      const a = Number(document.getElementById("a").value);
+      const b = Number(document.getElementById("b").value);
+      const profit = Number(document.getElementById("profit").value);
+      const price = Number(document.getElementById("price").value);
+      const point = Number(document.getElementById("point").value);
+
+
+      document.getElementById("profit").textContent = Math.round(((b - a) / b) * 1000) / 10;
+      document.getElementById("price").textContent = Math.round((b * 0.8) * 10) / 10;
+
+      if ((b * 0.8) < a) {
+        const c = Math.round(a - (((b * 0.8) * 10) / 10));
+        document.getElementById("point").textContent = c;
+
+      } else {
+        document.getElementById("point").textContent = "不要";
+      }
+    }
+
+
+    function calc2() {
+      const l = Number(document.getElementById("l").value);
+      const w = Number(document.getElementById("w").value);
+      const h = Number(document.getElementById("h").value);
+      const VW = Number(document.getElementById("VW").value);
+      const V3 = Number(document.getElementById("VW3").value);
+
+      document.getElementById("VW").textContent = Math.round(((l * w * h) / 5000) * 10) / 10;
+      document.getElementById("VW3").textContent = Math.round((((l + 3) * (w + 3) * (h + 3)) / 5000) * 10) / 10;
+
+    }
+    function calc3() {
+      const c = Number(document.getElementById("c").value);
+      const d = Number(document.getElementById("d").value);
+      const e = Number(document.getElementById("e").value);
+
+      const shipfee1 = c + 3300 + 2500 + 6000 + 1000;
+      const shipfee2 = c + (d * 0.012) + 3300 + 6000 + 1000;
+
+      if (shipfee1 > shipfee2) {
+
+        document.getElementById("e").textContent = shipfee1;
+
+      } else {
+        document.getElementById("e").textContent = shipfee2;
+      }
+    }
+
+    function replaceText() {
+      // 1. 各入力欄の値を取得
+      const val1 = document.getElementById("col1").value; // 1列目の値
+      const val2 = document.getElementById("col2").value; // 2列目の値
+      const val3 = document.getElementById("col3").value; // 3列目の値
+
+      // 2. 4列目の元テキストを取得
+      const templateText = document.getElementById("col4").textContent.trim();
+
+      // 3. XXX, WWW, ZZZ を 1〜3列目の文字に順番に置換
+      const resultText = templateText.replaceAll("XXX", val1)
+        .replaceAll("WWW", val2)
+        .replaceAll("ZZZ", val3);
+
+      // 4. 置換した文字を5列目にセット
+      document.getElementById("col5").textContent = resultText;
+    }
+
+    // 画面が開いたときに初回実行
+    replaceText();
+
+
+    function replaceText2() {
+      // 1. 各入力欄の値を取得
+      const val4 = document.getElementById("col6").value; // 1列目の値
+      const val5 = document.getElementById("col7").value; // 2列目の値
+      const val6 = document.getElementById("col8").value; // 3列目の値
+
+      // 2. 4列目の元テキストを取得
+      const templateText = document.getElementById("col9").textContent.trim();
+
+      // 3. XXX, WWW, ZZZ を 1〜3列目の文字に順番に置換
+      const resultText2 = templateText.replaceAll("KKK", val4)
+        .replaceAll("MMM", val5)
+        .replaceAll("NNN", val6)
+        .replaceAll("GGG", val4);
+
+      // 4. 置換した文字を5列目にセット
+      document.getElementById("col10").textContent = resultText2;
+    }
+
+    // 画面が開いたときに初回実行
+    replaceText2();
+  </script>
+
+
+</html>
